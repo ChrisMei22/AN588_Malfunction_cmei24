@@ -1,0 +1,365 @@
+---
+title: "cmei24_OriginalHomeworkCode_04"
+author: "Christian Mei"
+format: html
+editor: visual
+---
+
+Modules of Reference: [Module 10](https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html), Module 12
+
+## Write a simple R function, `Z.prop.test()`, that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:
+
+-   Your function should take the following arguments: **p1** and **n1** (no default) representing the estimated proportion and sample size (i.e., based on your sample data); **p2** and **n2** (both defaulting to NULL) that contain a second sample’s proportion and sample size data in the event of a two-sample test; **p0** (no default) as the expected value for the population proportion; and **alternative** (default “two.sided”) and **conf.level** (default 0.95), to be used in the same way as in the function `t.test()`.
+
+-   When conducting a two-sample test, it should be **p1** that is tested as being smaller or larger than **p2** when alternative=“less” or alternative=“greater”, the same as in the use of x and y in the function `t.test()`.
+
+-   The function should perform a one-sample Z-test using **p1**, **n1**, and **p0** if either **p2** or **n2** (or both) is NULL.
+
+-   The function should contain a check for the rules of thumb we have talked about (n∗p\>5 and n∗(1−p)\>5) to ensure the validity of assuming the normal distribution in both the one- and two-sample settings. If this is violated, the function should still complete but it should also print an appropriate warning message.
+
+-   The function should return a list containing the members **Z** (the test statistic), **P** (the appropriate p value), and **CI** (the two-sided CI with respect to “conf.level” around **p1** in the case of a one-sample test and around **p2-p1** in the case of a two-sample test). For all test alternatives (“two.sided”, “greater”, “less”), calculate symmetric CIs based on quantiles of the normal distribution rather than worrying about calculating single-limit confidence bounds.
+
+```{r}
+Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0, 
+                        alternative = "two.sided", conf.level = 0.95) {
+  
+  # Check if the normal approximation rule is met
+  if (n1 * p1 < 5 | n1 * (1 - p1) < 5) {
+    warning("Warning: Normal approximation may not be valid for sample 1 (n*p < 5 or n*(1-p) < 5).")
+  }
+  
+  if (!is.null(p2) & !is.null(n2)) {
+    if (n2 * p2 < 5 | n2 * (1 - p2) < 5) {
+      warning("Warning: Normal approximation may not be valid for sample 2 (n*p < 5 or n*(1-p) < 5).")
+    }
+  }
+
+  alpha <- 1 - conf.level  # Confidence level adjustment
+  crit <- qnorm(1 - alpha / 2)  # Z critical threshold for CI
+
+  # One-sample Z-test for proportion if only p1, n1, and p0 are provided
+  if (is.null(p2) | is.null(n2)) {
+    # We will break down the z calculation divided into two (SE and z calc based on SE)
+    # Forumal is based on Module 10
+    # Z <- (p1 - p0) / sqrt((p0 * (1 - p0)) / n1)
+    SE <- sqrt((p0 * (1 - p0)) / n1)  # Standard Error
+    Z <- (p1 - p0) / SE  # Z-score based on SE
+
+    
+    # Compute p-value based on alternative hypothesis
+    if (alternative == "less") {
+      P <- pnorm(Z)
+    } else if (alternative == "greater") {
+      P <- pnorm(Z, lower.tail = FALSE)
+    } else if (alternative == "two.sided") { # Two sided version, we need absolute value of Z
+      P <- 2 * (1 - pnorm(abs(Z)))  
+    }
+    
+    # Confidence Interval around p1
+    CI <- c(p1 - crit * SE, p1 + crit * SE)
+  
+  } else {  # Two-sample Z-test for proportion
+    p_star <- (p1 * n1 + p2 * n2) / (n1 + n2)  # Pooled proportion
+    # Like before we will break down the z calculation divided into two (SE and z calc based on SE)
+    SE <- sqrt(p_star * (1 - p_star) * (1 / n1 + 1 / n2))  # Standard Error
+    Z <- (p2 - p1) / SE  # Z-score calculation by SE
+
+    # Compute p-value based on alternative hypothesis
+    if (alternative == "less") {
+      P <- pnorm(Z)
+    } else if (alternative == "greater") {
+      P <- 1 - pnorm(Z)
+    } else if (alternative == "two.sided"){
+      P <- 1 - pnorm(Z, lower.tail = TRUE) + pnorm(Z, lower.tail = FALSE)  # Two-sided test
+    }
+    
+    # Confidence Interval for p2 - p1
+    CI <- c((p2 - p1) - crit * SE, (p2 - p1) + crit * SE)
+  }
+
+  # Return list with results
+  return(list(Z = round(Z, 4), P = round(P, 4), CI = round(CI, 4)))
+}
+
+```
+
+Let's put this to the test! We can use the proportion data provided in class and see how well this function's output matches with the one provided in [Module 10](https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html).
+
+A neotropical ornithologist working in the western Amazon deploys 30 mist nets in a 100 hectare (ha) grid. She monitors the nets on one morning and records whether or not she captures any birds in the net (i.e., a “success” or “failure” for every net during a netting session). The following vector summarizes her netting results:
+
+```{r}
+v <- c(0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0,
+    1, 1, 0, 1, 0, 1, 1)
+
+```
+
+Her netting success over the previous three seasons suggests that she should catch birds in 80% of her nets. This season, she feels, her success rate is lower than in previous years. Does her trapping data support this hypothesis?
+
+```{r}
+v1_prop <- sum(v1)/length(v1) # Or use mean()
+v1_prop
+```
+
+```{r}
+# p0 is 0.8 based on the expected 80%
+Z.prop.test(p1 = v_prop, n1 = length(v), p0 = 0.8, alternative = "less")
+
+# The CI's are a bit different, I need to fix the CI
+```
+
+A biologist studying two species of tropical bats captures females of both species in a mist net over the course of week of nightly netting. For each species, the researcher records whether females are lactating or not. The two vectors below summarize the data for each species.
+
+```{r}
+v1 <- c(1, 0, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0,
+    1, 0)
+
+v2 <- c(1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, 0,
+    0, 1, 1, 0, 1, 1, 1)
+
+v1_prop <- sum(v1)/length(v1) # or just use mean() as in the module
+v1_prop
+
+v2_prop <- sum(v2)/length(v2) # or just use mean() as in the module
+v2_prop
+```
+
+Time to test our function!
+
+```{r}
+Z.prop.test(p1 = v1_prop, n1 = length(v1), p2 = v2_prop, n2 = length(v2), alternative = "two.sided")
+```
+
+It appears that my function is correctly testing proportions in a Z test!
+
+## The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (`MaxLongevity_m`) measured in months from species’ brain size (`Brain_Size_Species_Mean`) measured in grams. Do the following for both `longevity~brain size` and `log(longevity)~log(brain size)`:
+
+Load the necessary libraries
+
+```{r}
+library(curl)
+library(tidyverse)
+```
+
+Load the Kamilar and Cooper dataset from Prof. Schmitt's github
+
+```{r}
+KandC <- curl(url = "https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Spring25/KamilarAndCooperData.csv")
+
+kc <- read_csv(KandC, col_names = TRUE)
+
+head(kc)
+```
+
+Let's see all the columns in the dataset and confirm that `MaxLongevity_m` and `Brain_Size_Species_Mean` are there.
+
+```{r}
+colnames(kc)
+```
+
+Let's rename them to make it easier to work with!
+
+```{r}
+kc <- kc %>% rename(longevity = MaxLongevity_m, 
+                    brain_size = Brain_Size_Species_Mean) # We use the rename function to change new title = old title
+
+```
+
+To confirm that this change has occurred
+
+```{r}
+colnames(kc)
+```
+
+Now let's also add the log() version of `longevity` and `brain_size` to prepare everything we need for the two models
+
+```{r}
+kc <- kc %>% mutate( # Use mutate to generate new columns that will take the log of longevity and brain size respectively
+  log_longevity = log(longevity),
+  log_brain_size = log(brain_size)
+)
+```
+
+```{r}
+colnames(kc)
+```
+
+Now we're ready to create the linear models using `lm()`
+
+```{r}
+kc_model <- lm(longevity~ brain_size, data = kc)
+kc_model
+```
+
+To create the formula, we can isolate the coefficients for y-intercept and slope
+
+```{r}
+kc_intercept <- round(coef(kc_model)[1] ,2) # We take first value from coef and round it to 2 decimals
+kc_slope <- round(coef(kc_model)[2] ,2)# We take second value (slope) from coef and round it to 2 decimals
+
+kc_lm_formula <- paste0("y = ", kc_slope, "x + ", kc_intercept)
+kc_lm_formula
+```
+
+Time to plot!
+
+```{r}
+
+kc_plot <- ggplot(data = kc, aes(x = brain_size, y = longevity)) +
+  geom_point(color = "red") + 
+  geom_smooth(method = "lm", formula = y ~ x, color = "blue") + 
+  geom_text(x = 400, y = 850, label = kc_lm_formula, color = "blue") +# Need to give label a coordinate
+  theme_classic()
+
+kc_plot
+```
+
+Just by looking at it we can see that the model isn't great, most of the points are found in the lower left.
+
+### Identify and interpret the point estimate of the slope (β1)
+
+```{r}
+kc_slope <- round(coef(kc_model)[2] ,2)# We take second value (slope) from coef and round it to 2 decimals
+kc_slope
+```
+
+### 90 percent CI for the slope (β1) parameter.
+
+```{r}
+kc_ci <- confint(kc_model, level = 0.90)[2,] # We use the confint function that will extract the confidence intervals. 
+# We also use the [2,] to only extract the second row of values which correspond to the slope CIs
+kc_ci
+```
+
+### Outcome of the test associated with the hypotheses H0: β1 = 0; HA: β1≠ 0
+
+To do this we can look at the p-value of the slope not being 0
+
+```{r}
+slope_p_value <- summary(kc_model)$coefficients[2, 4] # Here's is just more indexing to extract the p-values assicuated with the slope.
+slope_p_value
+```
+
+### Using your model, add lines for the 90 percent confidence and prediction interval bands on the plot and add a legend to differentiate between the lines.
+
+Most of this code was based on the notes from Challenge 4 in [Module 12](https://fuzzyatelin.github.io/bioanth-stats/module-12/module-12.html)
+
+```{r}
+prediction_interval_kc <- predict(kc_model, newdata = data.frame(brain_size = kc$brain_size), interval = "prediction",level = 0.90)
+
+
+kc_ci_table <- cbind(kc$brain_size, kc$longevity, prediction_interval_kc)
+colnames(kc_ci_table) <- c("x", "y", "CIfit", "CIlwr", "CIupr")
+head(kc_ci_table)
+```
+
+```{r}
+kc_plot <- kc_plot + geom_line(data = kc_ci_table , aes(x = x, y = CIlwr), colour = "red") +
+  geom_line(data = kc_ci_table , aes(x = x, y = CIfit), colour = "purple") +
+  geom_line(data = kc_ci_table, aes(x = x, y = CIupr), colour = "red")
+
+kc_plot
+```
+
+### Produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm.
+
+To predict a single value we can use the `predict()` function again but with different arguments
+
+```{r}
+prediction1 <- predict(kc_model, newdata = data.frame(brain_size = 800))
+
+prediction1
+```
+
+### Do you trust the model to predict observations accurately for this value of the explanatory variable? Why or why not?
+
+I do not trust this model since the line doesn't fit very well with the data. This could be due to the decreased number of data points later (going to the right). Even the error shaded regions are seen to expand as we move to the right. Since we are using a weight value that is well out of range, this uncertainty increases, making me distrust this prediction.
+
+## **We will now repeat this for the log() linear model!**
+
+Won't comment much of the code here since it is very similar to what I did above!
+
+```{r}
+kc_model_log <- lm(log_longevity ~ log_brain_size, data = kc)
+kc_model_log
+```
+
+```{r}
+plot(data = kc, log_longevity ~ log_brain_size)
+```
+
+Formula:
+
+```{r}
+kc_log_intercept <- round(coef(kc_model_log)[1] ,2) # We take first value from coef and round it to 2 decimals
+
+kc_log_slope <- round(coef(kc_model_log)[2] ,2)# We take second value (slope) from coef and round it to 2 decimals
+
+kc_log_formula <- paste0("y = ", kc_log_slope, "x + ", kc_log_intercept)
+kc_log_formula
+```
+
+Plotting!
+
+```{r}
+kc_plot_log <- ggplot(data = kc, aes(x = log_brain_size, y = log_longevity)) +
+  geom_point(color = "blue") + 
+  geom_smooth(method = "lm", formula = y ~ x, color = "red") + 
+  geom_text(x = 5.5, y = 5.9, label = kc_log_formula, color = "red") +# Need to give label a coordinate
+  theme_classic()
+
+kc_plot_log
+```
+
+### Identify and interpret the point estimate of the slope (β1)
+
+```{r}
+kc_log_slope <- round(coef(kc_model_log)[2] ,2)# We take second value (slope) from coef and round it to 2 decimals
+kc_log_slope
+```
+
+### 90 percent CI for the slope (β1) parameter.
+
+```{r}
+kc_log_ci <- confint(kc_model_log, level = 0.90)[2,]
+kc_log_ci
+```
+
+### Outcome of the test associated with the hypotheses H0: β1 = 0; HA: β1≠ 0
+
+```{r}
+slopelog_p_value <- summary(kc_model_log)$coefficients[2, 4]
+slopelog_p_value
+```
+
+### Using your model, add lines for the 90 percent confidence and prediction interval bands on the plot and add a legend to differentiate between the lines.
+
+```{r}
+prediction_interval_kc_log <- predict(kc_model_log, newdata = data.frame(log_brain_size = kc$log_brain_size), interval = "prediction",level = 0.90)
+
+
+kc_ci_table_log <- cbind(kc$log_brain_size, kc$log_longevity, prediction_interval_kc_log)
+colnames(kc_ci_table_log) <- c("x", "y", "CIfit", "CIlwr", "CIupr")
+head(kc_ci_table_log)
+
+```
+
+```{r}
+kc_plot_log <- kc_plot_log + geom_line(data = kc_ci_table_log, aes(x = x, y = CIlwr), colour = "red") +
+  geom_line(data = kc_ci_table_log, aes(x = x, y = CIfit), colour = "purple") +
+  geom_line(data = kc_ci_table_log, aes(x = x, y = CIupr), colour = "red")
+
+
+kc_plot_log
+```
+
+### Produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm.
+
+```{r}
+prediction2 <- predict(kc_model_log, newdata = data.frame(log_brain_size = log(800)))
+
+prediction2
+```
+
+### Looking at your two models, which do you think is better? Why?
+
+Visually, the log model is much better! Data points are more evenly spread throughout the scatterplot, making it less uncertain for predicted values that are out of the brain_size range to be accurately predicted.
