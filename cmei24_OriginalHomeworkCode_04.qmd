@@ -233,6 +233,8 @@ kc_lm_formula
 
 Time to plot!
 
+**#COMMENT FROM SHERRY:** Interesting how you wrote out the slope formula before adding it to the plot. I just showed it within the plot
+
 ```{r}
 
 kc_plot <- ggplot(data = kc, aes(x = brain_size, y = longevity)) +
