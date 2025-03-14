@@ -88,6 +88,8 @@ Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0,
 
 ```
 
+[***#COMMENT FROM SHERRY:***]{.underline} I think overall you function was very organized and easy to follow. I did not group it as well as you did so this is very inspiring for me to learn from. Thank you!
+
 Let's put this to the test! We can use the proportion data provided in class and see how well this function's output matches with the one provided in [Module 10](https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html).
 
 A neotropical ornithologist working in the western Amazon deploys 30 mist nets in a 100 hectare (ha) grid. She monitors the nets on one morning and records whether or not she captures any birds in the net (i.e., a “success” or “failure” for every net during a netting session). The following vector summarizes her netting results:
