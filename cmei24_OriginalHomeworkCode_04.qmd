@@ -117,8 +117,14 @@ v <- c(0, 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 0, 1, 1, 1, 0,
 Her netting success over the previous three seasons suggests that she should catch birds in 80% of her nets. This season, she feels, her success rate is lower than in previous years. Does her trapping data support this hypothesis?
 
 ```{r}
-v1_prop <- sum(v1)/length(v1) # Or use mean()
-v1_prop
+#COMMENT FROM SHERRY: Do you mean v_prop here? Something like this?
+
+v_prop <- sum(v)/length(v) # Or use mean()
+v_prop
+
+#your original code:
+#v1_prop <- sum(v1)/length(v1) # Or use mean()
+#v1_prop
 ```
 
 ```{r}
