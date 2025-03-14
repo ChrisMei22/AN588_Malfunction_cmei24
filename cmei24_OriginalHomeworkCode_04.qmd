@@ -307,6 +307,8 @@ prediction1
 
 I do not trust this model since the line doesn't fit very well with the data. This could be due to the decreased number of data points later (going to the right). Even the error shaded regions are seen to expand as we move to the right. Since we are using a weight value that is well out of range, this uncertainty increases, making me distrust this prediction.
 
+[***#COMMENT FROM SHERRY:***]{.underline} Agreed. I think this is great explanation!
+
 ## **We will now repeat this for the log() linear model!**
 
 Won't comment much of the code here since it is very similar to what I did above!
