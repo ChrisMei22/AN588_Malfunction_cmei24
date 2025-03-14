@@ -1,0 +1,1171 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Christian Mei">
+
+<title>cmei24_OriginalHomeworkCode_04</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/clipboard/clipboard.min.js"></script>
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/quarto.js"></script>
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/popper.min.js"></script>
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/anchor.min.js"></script>
+<link href="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="cmei24_OriginalHomeworkCode_04_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="cmei24_OriginalHomeworkCode_04_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="cmei24_OriginalHomeworkCode_04_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="cmei24_OriginalHomeworkCode_04_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body class="fullcontent">
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">cmei24_OriginalHomeworkCode_04</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Christian Mei </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Modules of Reference: <a href="https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html">Module 10</a>, Module 12</p>
+<p><u><strong><em>COMMENT FROM SHERRY:</em></strong></u> I also started inserting the link of modules into hw! I think this is a great way to stay organized! Great start.</p>
+<section id="write-a-simple-r-function-z.prop.test-that-can-perform-one--or-two-sample-z-tests-for-proportion-data-using-the-following-guidelines" class="level2">
+<h2 class="anchored" data-anchor-id="write-a-simple-r-function-z.prop.test-that-can-perform-one--or-two-sample-z-tests-for-proportion-data-using-the-following-guidelines">Write a simple R function, <code>Z.prop.test()</code>, that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:</h2>
+<ul>
+<li><p>Your function should take the following arguments: <strong>p1</strong> and <strong>n1</strong> (no default) representing the estimated proportion and sample size (i.e., based on your sample data); <strong>p2</strong> and <strong>n2</strong> (both defaulting to NULL) that contain a second sample’s proportion and sample size data in the event of a two-sample test; <strong>p0</strong> (no default) as the expected value for the population proportion; and <strong>alternative</strong> (default “two.sided”) and <strong>conf.level</strong> (default 0.95), to be used in the same way as in the function <code>t.test()</code>.</p></li>
+<li><p>When conducting a two-sample test, it should be <strong>p1</strong> that is tested as being smaller or larger than <strong>p2</strong> when alternative=“less” or alternative=“greater”, the same as in the use of x and y in the function <code>t.test()</code>.</p></li>
+<li><p>The function should perform a one-sample Z-test using <strong>p1</strong>, <strong>n1</strong>, and <strong>p0</strong> if either <strong>p2</strong> or <strong>n2</strong> (or both) is NULL.</p></li>
+<li><p>The function should contain a check for the rules of thumb we have talked about (n∗p&gt;5 and n∗(1−p)&gt;5) to ensure the validity of assuming the normal distribution in both the one- and two-sample settings. If this is violated, the function should still complete but it should also print an appropriate warning message.</p></li>
+<li><p>The function should return a list containing the members <strong>Z</strong> (the test statistic), <strong>P</strong> (the appropriate p value), and <strong>CI</strong> (the two-sided CI with respect to “conf.level” around <strong>p1</strong> in the case of a one-sample test and around <strong>p2-p1</strong> in the case of a two-sample test). For all test alternatives (“two.sided”, “greater”, “less”), calculate symmetric CIs based on quantiles of the normal distribution rather than worrying about calculating single-limit confidence bounds.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Z.prop.test <span class="ot">&lt;-</span> <span class="cf">function</span>(p1, n1, <span class="at">p2 =</span> <span class="cn">NULL</span>, <span class="at">n2 =</span> <span class="cn">NULL</span>, p0, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                        <span class="at">alternative =</span> <span class="st">"two.sided"</span>, <span class="at">conf.level =</span> <span class="fl">0.95</span>) {</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Check if the normal approximation rule is met</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (n1 <span class="sc">*</span> p1 <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">|</span> n1 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p1) <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">warning</span>(<span class="st">"Warning: Normal approximation may not be valid for sample 1 (n*p &lt; 5 or n*(1-p) &lt; 5)."</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(p2) <span class="sc">&amp;</span> <span class="sc">!</span><span class="fu">is.null</span>(n2)) {</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (n2 <span class="sc">*</span> p2 <span class="sc">&lt;</span> <span class="dv">5</span> <span class="sc">|</span> n2 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p2) <span class="sc">&lt;</span> <span class="dv">5</span>) {</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>      <span class="fu">warning</span>(<span class="st">"Warning: Normal approximation may not be valid for sample 2 (n*p &lt; 5 or n*(1-p) &lt; 5)."</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="co">#COMMENT FROM SHERRY: All the way up to this point, I had the same function. I think you did a great job with the warning message. It tells the user a clear message of the rules that are violated!</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  alpha <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> conf.level  <span class="co"># Confidence level adjustment</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>  crit <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="dv">1</span> <span class="sc">-</span> alpha <span class="sc">/</span> <span class="dv">2</span>)  <span class="co"># Z critical threshold for CI</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># One-sample Z-test for proportion if only p1, n1, and p0 are provided</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">is.null</span>(p2) <span class="sc">|</span> <span class="fu">is.null</span>(n2)) {</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="co"># We will break down the z calculation divided into two (SE and z calc based on SE)</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Forumal is based on Module 10</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Z &lt;- (p1 - p0) / sqrt((p0 * (1 - p0)) / n1)</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>    SE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>((p0 <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p0)) <span class="sc">/</span> n1)  <span class="co"># Standard Error</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>    Z <span class="ot">&lt;-</span> (p1 <span class="sc">-</span> p0) <span class="sc">/</span> SE  <span class="co"># Z-score based on SE</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">#COMMENT FROM SHERRY: The one sample test looks great! I like how you grouped terms such as standard error. I just wrote out the whole thing. But its cool how there are different ways of approaching the problem!</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute p-value based on alternative hypothesis</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"less"</span>) {</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(Z)</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"greater"</span>) {</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(Z, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"two.sided"</span>) { <span class="co"># Two sided version, we need absolute value of Z</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(Z)))  </span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confidence Interval around p1</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>    CI <span class="ot">&lt;-</span> <span class="fu">c</span>(p1 <span class="sc">-</span> crit <span class="sc">*</span> SE, p1 <span class="sc">+</span> crit <span class="sc">*</span> SE)</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {  <span class="co"># Two-sample Z-test for proportion</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>    p_star <span class="ot">&lt;-</span> (p1 <span class="sc">*</span> n1 <span class="sc">+</span> p2 <span class="sc">*</span> n2) <span class="sc">/</span> (n1 <span class="sc">+</span> n2)  <span class="co"># Pooled proportion</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Like before we will break down the z calculation divided into two (SE and z calc based on SE)</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>    SE <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_star <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_star) <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">/</span> n1 <span class="sc">+</span> <span class="dv">1</span> <span class="sc">/</span> n2))  <span class="co"># Standard Error</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>    Z <span class="ot">&lt;-</span> (p2 <span class="sc">-</span> p1) <span class="sc">/</span> SE  <span class="co"># Z-score calculation by SE</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Compute p-value based on alternative hypothesis</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"less"</span>) {</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(Z)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"greater"</span>) {</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(Z)</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> <span class="cf">if</span> (alternative <span class="sc">==</span> <span class="st">"two.sided"</span>){</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>      P <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pnorm</span>(Z, <span class="at">lower.tail =</span> <span class="cn">TRUE</span>) <span class="sc">+</span> <span class="fu">pnorm</span>(Z, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)  <span class="co"># Two-sided test</span></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Confidence Interval for p2 - p1</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    CI <span class="ot">&lt;-</span> <span class="fu">c</span>((p2 <span class="sc">-</span> p1) <span class="sc">-</span> crit <span class="sc">*</span> SE, (p2 <span class="sc">-</span> p1) <span class="sc">+</span> crit <span class="sc">*</span> SE)</span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Return list with results</span></span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(<span class="fu">list</span>(<span class="at">Z =</span> <span class="fu">round</span>(Z, <span class="dv">4</span>), <span class="at">P =</span> <span class="fu">round</span>(P, <span class="dv">4</span>), <span class="at">CI =</span> <span class="fu">round</span>(CI, <span class="dv">4</span>)))</span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><u><strong><em>#COMMENT FROM SHERRY:</em></strong></u> I think overall you function was very organized and easy to follow. I did not group it as well as you did so this is very inspiring for me to learn from. Thank you!</p>
+<p>Let’s put this to the test! We can use the proportion data provided in class and see how well this function’s output matches with the one provided in <a href="https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html">Module 10</a>.</p>
+<p><u><strong><em>#COMMENT FROM SHERRY:</em></strong></u> I also gave examples to check my function but you went above and beyond!!! These examples are so lively and fun! I just wrote mine out like this: feel free to delete my examples<br>
+</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># example set 1, one sample test</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">#Z.prop.test.function(p1 = 0.6, n1 = 50, p0 = 0.8)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># example set 2, two sample test</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">#Z.prop.test.function(p1 = 0.3, n1 = 50, p2 = 0.7, n2 = 35, p0 = 0.5)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># example set 1, one sample test</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="co"># this example shows the warning sign on how the sample violates the (np &gt; 5 and n(1-p) &gt; 5) rule</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">#Z.prop.test.function(p1 = 0.1, n1 = 10, p0 = 0.8)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A neotropical ornithologist working in the western Amazon deploys 30 mist nets in a 100 hectare (ha) grid. She monitors the nets on one morning and records whether or not she captures any birds in the net (i.e., a “success” or “failure” for every net during a netting session). The following vector summarizes her netting results:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Her netting success over the previous three seasons suggests that she should catch birds in 80% of her nets. This season, she feels, her success rate is lower than in previous years. Does her trapping data support this hypothesis?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">#COMMENT FROM SHERRY: Do you mean v_prop here? Something like this?</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>v_prop <span class="ot">&lt;-</span> <span class="fu">sum</span>(v)<span class="sc">/</span><span class="fu">length</span>(v) <span class="co"># Or use mean()</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>v_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#your original code:</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">#v1_prop &lt;- sum(v1)/length(v1) # Or use mean()</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="co">#v1_prop</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># p0 is 0.8 based on the expected 80%</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">Z.prop.test</span>(<span class="at">p1 =</span> v_prop, <span class="at">n1 =</span> <span class="fu">length</span>(v), <span class="at">p0 =</span> <span class="fl">0.8</span>, <span class="at">alternative =</span> <span class="st">"less"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Z
+[1] -2.7386
+
+$P
+[1] 0.0031
+
+$CI
+[1] 0.4569 0.7431</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The CI's are a bit different, I need to fix the CI</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>A biologist studying two species of tropical bats captures females of both species in a mist net over the course of week of nightly netting. For each species, the researcher records whether females are lactating or not. The two vectors below summarize the data for each species.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>v2 <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>v1_prop <span class="ot">&lt;-</span> <span class="fu">sum</span>(v1)<span class="sc">/</span><span class="fu">length</span>(v1) <span class="co"># or just use mean() as in the module</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>v1_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.56</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>v2_prop <span class="ot">&lt;-</span> <span class="fu">sum</span>(v2)<span class="sc">/</span><span class="fu">length</span>(v2) <span class="co"># or just use mean() as in the module</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>v2_prop</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7</code></pre>
+</div>
+</div>
+<p>Time to test our function!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">Z.prop.test</span>(<span class="at">p1 =</span> v1_prop, <span class="at">n1 =</span> <span class="fu">length</span>(v1), <span class="at">p2 =</span> v2_prop, <span class="at">n2 =</span> <span class="fu">length</span>(v2), <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>$Z
+[1] 1.0747
+
+$P
+[1] 0.2825
+
+$CI
+[1] -0.1153  0.3953</code></pre>
+</div>
+</div>
+<p>It appears that my function is correctly testing proportions in a Z test!</p>
+<p><u><strong><em>#COMMENT FROM SHERRY:</em></strong></u> AWESOME JOB! I ran through both of your examples and they work flawlessly! I like the diversity in your examples that proves how your function fully covers all aspects.</p>
+</section>
+<section id="the-dataset-from-kamilar-and-cooper-has-in-it-a-large-number-of-variables-related-to-life-history-and-body-size.-for-this-exercise-the-end-aim-is-to-fit-a-simple-linear-regression-model-to-predict-longevity-maxlongevity_m-measured-in-months-from-species-brain-size-brain_size_species_mean-measured-in-grams.-do-the-following-for-both-longevitybrain-size-and-loglongevitylogbrain-size" class="level2">
+<h2 class="anchored" data-anchor-id="the-dataset-from-kamilar-and-cooper-has-in-it-a-large-number-of-variables-related-to-life-history-and-body-size.-for-this-exercise-the-end-aim-is-to-fit-a-simple-linear-regression-model-to-predict-longevity-maxlongevity_m-measured-in-months-from-species-brain-size-brain_size_species_mean-measured-in-grams.-do-the-following-for-both-longevitybrain-size-and-loglongevitylogbrain-size">The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (<code>MaxLongevity_m</code>) measured in months from species’ brain size (<code>Brain_Size_Species_Mean</code>) measured in grams. Do the following for both <code>longevity~brain size</code> and <code>log(longevity)~log(brain size)</code>:</h2>
+<p>Load the necessary libraries</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(curl)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Using libcurl 8.7.1 with LibreSSL/3.3.6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     </code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter()     masks stats::filter()
+✖ dplyr::lag()        masks stats::lag()
+✖ readr::parse_date() masks curl::parse_date()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Load the Kamilar and Cooper dataset from Prof.&nbsp;Schmitt’s github</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>KandC <span class="ot">&lt;-</span> <span class="fu">curl</span>(<span class="at">url =</span> <span class="st">"https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/refs/heads/master/AN588_Spring25/KamilarAndCooperData.csv"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>kc <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(KandC, <span class="at">col_names =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 213 Columns: 44
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (16): Scientific_Name, Family, Genus, Species, Brain_size_Ref, Mass_Ref,...
+dbl (28): Brain_Size_Species_Mean, Brain_Size_Female_Mean, Body_mass_male_me...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 44
+  Scientific_Name             Family        Genus Species Brain_Size_Species_M…¹
+  &lt;chr&gt;                       &lt;chr&gt;         &lt;chr&gt; &lt;chr&gt;                    &lt;dbl&gt;
+1 Allenopithecus_nigroviridis Cercopitheci… Alle… nigrov…                   58.0
+2 Allocebus_trichotis         Cercopitheci… Allo… tricho…                   NA  
+3 Alouatta_belzebul           Atelidae      Alou… belzeb…                   52.8
+4 Alouatta_caraya             Atelidae      Alou… caraya                    52.6
+5 Alouatta_guariba            Atelidae      Alou… guariba                   51.7
+6 Alouatta_palliata           Atelidae      Alou… pallia…                   49.9
+# ℹ abbreviated name: ¹​Brain_Size_Species_Mean
+# ℹ 39 more variables: Brain_Size_Female_Mean &lt;dbl&gt;, Brain_size_Ref &lt;chr&gt;,
+#   Body_mass_male_mean &lt;dbl&gt;, Body_mass_female_mean &lt;dbl&gt;,
+#   Mass_Dimorphism &lt;dbl&gt;, Mass_Ref &lt;chr&gt;, MeanGroupSize &lt;dbl&gt;,
+#   AdultMales &lt;dbl&gt;, AdultFemale &lt;dbl&gt;, AdultSexRatio &lt;dbl&gt;,
+#   Social_Organization_Ref &lt;chr&gt;, InterbirthInterval_d &lt;dbl&gt;, Gestation &lt;dbl&gt;,
+#   WeaningAge_d &lt;dbl&gt;, MaxLongevity_m &lt;dbl&gt;, LitterSz &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<p>Let’s see all the columns in the dataset and confirm that <code>MaxLongevity_m</code> and <code>Brain_Size_Species_Mean</code> are there.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(kc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Scientific_Name"         "Family"                 
+ [3] "Genus"                   "Species"                
+ [5] "Brain_Size_Species_Mean" "Brain_Size_Female_Mean" 
+ [7] "Brain_size_Ref"          "Body_mass_male_mean"    
+ [9] "Body_mass_female_mean"   "Mass_Dimorphism"        
+[11] "Mass_Ref"                "MeanGroupSize"          
+[13] "AdultMales"              "AdultFemale"            
+[15] "AdultSexRatio"           "Social_Organization_Ref"
+[17] "InterbirthInterval_d"    "Gestation"              
+[19] "WeaningAge_d"            "MaxLongevity_m"         
+[21] "LitterSz"                "Life_History_Ref"       
+[23] "GR_MidRangeLat_dd"       "Precip_Mean_mm"         
+[25] "Temp_Mean_degC"          "AET_Mean_mm"            
+[27] "PET_Mean_mm"             "Climate_Ref"            
+[29] "HomeRange_km2"           "HomeRangeRef"           
+[31] "DayLength_km"            "DayLengthRef"           
+[33] "Territoriality"          "Fruit"                  
+[35] "Leaves"                  "Fauna"                  
+[37] "DietRef1"                "Canine_Dimorphism"      
+[39] "Canine_Dimorphism_Ref"   "Feed"                   
+[41] "Move"                    "Rest"                   
+[43] "Social"                  "Activity_Budget_Ref"    </code></pre>
+</div>
+</div>
+<p>Let’s rename them to make it easier to work with!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>kc <span class="ot">&lt;-</span> kc <span class="sc">%&gt;%</span> <span class="fu">rename</span>(<span class="at">longevity =</span> MaxLongevity_m, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                    <span class="at">brain_size =</span> Brain_Size_Species_Mean) <span class="co"># We use the rename function to change new title = old title</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To confirm that this change has occurred</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(kc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Scientific_Name"         "Family"                 
+ [3] "Genus"                   "Species"                
+ [5] "brain_size"              "Brain_Size_Female_Mean" 
+ [7] "Brain_size_Ref"          "Body_mass_male_mean"    
+ [9] "Body_mass_female_mean"   "Mass_Dimorphism"        
+[11] "Mass_Ref"                "MeanGroupSize"          
+[13] "AdultMales"              "AdultFemale"            
+[15] "AdultSexRatio"           "Social_Organization_Ref"
+[17] "InterbirthInterval_d"    "Gestation"              
+[19] "WeaningAge_d"            "longevity"              
+[21] "LitterSz"                "Life_History_Ref"       
+[23] "GR_MidRangeLat_dd"       "Precip_Mean_mm"         
+[25] "Temp_Mean_degC"          "AET_Mean_mm"            
+[27] "PET_Mean_mm"             "Climate_Ref"            
+[29] "HomeRange_km2"           "HomeRangeRef"           
+[31] "DayLength_km"            "DayLengthRef"           
+[33] "Territoriality"          "Fruit"                  
+[35] "Leaves"                  "Fauna"                  
+[37] "DietRef1"                "Canine_Dimorphism"      
+[39] "Canine_Dimorphism_Ref"   "Feed"                   
+[41] "Move"                    "Rest"                   
+[43] "Social"                  "Activity_Budget_Ref"    </code></pre>
+</div>
+</div>
+<p>Now let’s also add the log() version of <code>longevity</code> and <code>brain_size</code> to prepare everything we need for the two models</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>kc <span class="ot">&lt;-</span> kc <span class="sc">%&gt;%</span> <span class="fu">mutate</span>( <span class="co"># Use mutate to generate new columns that will take the log of longevity and brain size respectively</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">log_longevity =</span> <span class="fu">log</span>(longevity),</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">log_brain_size =</span> <span class="fu">log</span>(brain_size)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(kc)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "Scientific_Name"         "Family"                 
+ [3] "Genus"                   "Species"                
+ [5] "brain_size"              "Brain_Size_Female_Mean" 
+ [7] "Brain_size_Ref"          "Body_mass_male_mean"    
+ [9] "Body_mass_female_mean"   "Mass_Dimorphism"        
+[11] "Mass_Ref"                "MeanGroupSize"          
+[13] "AdultMales"              "AdultFemale"            
+[15] "AdultSexRatio"           "Social_Organization_Ref"
+[17] "InterbirthInterval_d"    "Gestation"              
+[19] "WeaningAge_d"            "longevity"              
+[21] "LitterSz"                "Life_History_Ref"       
+[23] "GR_MidRangeLat_dd"       "Precip_Mean_mm"         
+[25] "Temp_Mean_degC"          "AET_Mean_mm"            
+[27] "PET_Mean_mm"             "Climate_Ref"            
+[29] "HomeRange_km2"           "HomeRangeRef"           
+[31] "DayLength_km"            "DayLengthRef"           
+[33] "Territoriality"          "Fruit"                  
+[35] "Leaves"                  "Fauna"                  
+[37] "DietRef1"                "Canine_Dimorphism"      
+[39] "Canine_Dimorphism_Ref"   "Feed"                   
+[41] "Move"                    "Rest"                   
+[43] "Social"                  "Activity_Budget_Ref"    
+[45] "log_longevity"           "log_brain_size"         </code></pre>
+</div>
+</div>
+<p>Now we’re ready to create the linear models using <code>lm()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>kc_model <span class="ot">&lt;-</span> <span class="fu">lm</span>(longevity<span class="sc">~</span> brain_size, <span class="at">data =</span> kc)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>kc_model</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = longevity ~ brain_size, data = kc)
+
+Coefficients:
+(Intercept)   brain_size  
+    248.952        1.218  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#COMMENT FROM SHERRY: A function here I found useful is also summary(kc_model) it shows more information about the linear model that the users might be interested in</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>To create the formula, we can isolate the coefficients for y-intercept and slope</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>kc_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model)[<span class="dv">1</span>] ,<span class="dv">2</span>) <span class="co"># We take first value from coef and round it to 2 decimals</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>kc_slope <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model)[<span class="dv">2</span>] ,<span class="dv">2</span>)<span class="co"># We take second value (slope) from coef and round it to 2 decimals</span></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>kc_lm_formula <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"y = "</span>, kc_slope, <span class="st">"x + "</span>, kc_intercept)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>kc_lm_formula</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "y = 1.22x + 248.95"</code></pre>
+</div>
+</div>
+<p>Time to plot!</p>
+<p><strong>#COMMENT FROM SHERRY:</strong> Interesting how you wrote out the slope formula before adding it to the plot. I just showed it within the plot</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>kc_plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> kc, <span class="fu">aes</span>(<span class="at">x =</span> brain_size, <span class="at">y =</span> longevity)) <span class="sc">+</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="dv">400</span>, <span class="at">y =</span> <span class="dv">850</span>, <span class="at">label =</span> kc_lm_formula, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span><span class="co"># Need to give label a coordinate</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>kc_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cmei24_OriginalHomeworkCode_04_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Just by looking at it we can see that the model isn’t great, most of the points are found in the lower left.</p>
+<section id="identify-and-interpret-the-point-estimate-of-the-slope-β1" class="level3">
+<h3 class="anchored" data-anchor-id="identify-and-interpret-the-point-estimate-of-the-slope-β1">Identify and interpret the point estimate of the slope (β1)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>kc_slope <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model)[<span class="dv">2</span>] ,<span class="dv">2</span>)<span class="co"># We take second value (slope) from coef and round it to 2 decimals</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>kc_slope</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>brain_size 
+      1.22 </code></pre>
+</div>
+</div>
+</section>
+<section id="percent-ci-for-the-slope-β1-parameter." class="level3">
+<h3 class="anchored" data-anchor-id="percent-ci-for-the-slope-β1-parameter.">90 percent CI for the slope (β1) parameter.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>kc_ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(kc_model, <span class="at">level =</span> <span class="fl">0.90</span>)[<span class="dv">2</span>,] <span class="co"># We use the confint function that will extract the confidence intervals. </span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co"># We also use the [2,] to only extract the second row of values which correspond to the slope CIs</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>kc_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     5 %     95 % 
+1.035571 1.400410 </code></pre>
+</div>
+</div>
+</section>
+<section id="outcome-of-the-test-associated-with-the-hypotheses-h0-β1-0-ha-β1-0" class="level3">
+<h3 class="anchored" data-anchor-id="outcome-of-the-test-associated-with-the-hypotheses-h0-β1-0-ha-β1-0">Outcome of the test associated with the hypotheses H0: β1 = 0; HA: β1≠ 0</h3>
+<p>To do this we can look at the p-value of the slope not being 0</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>slope_p_value <span class="ot">&lt;-</span> <span class="fu">summary</span>(kc_model)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>] <span class="co"># Here's is just more indexing to extract the p-values assicuated with the slope.</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>slope_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.685909e-20</code></pre>
+</div>
+</div>
+</section>
+<section id="using-your-model-add-lines-for-the-90-percent-confidence-and-prediction-interval-bands-on-the-plot-and-add-a-legend-to-differentiate-between-the-lines." class="level3">
+<h3 class="anchored" data-anchor-id="using-your-model-add-lines-for-the-90-percent-confidence-and-prediction-interval-bands-on-the-plot-and-add-a-legend-to-differentiate-between-the-lines.">Using your model, add lines for the 90 percent confidence and prediction interval bands on the plot and add a legend to differentiate between the lines.</h3>
+<p>Most of this code was based on the notes from Challenge 4 in <a href="https://fuzzyatelin.github.io/bioanth-stats/module-12/module-12.html">Module 12</a></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>prediction_interval_kc <span class="ot">&lt;-</span> <span class="fu">predict</span>(kc_model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">brain_size =</span> kc<span class="sc">$</span>brain_size), <span class="at">interval =</span> <span class="st">"prediction"</span>,<span class="at">level =</span> <span class="fl">0.90</span>)</span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a>kc_ci_table <span class="ot">&lt;-</span> <span class="fu">cbind</span>(kc<span class="sc">$</span>brain_size, kc<span class="sc">$</span>longevity, prediction_interval_kc)</span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(kc_ci_table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"CIfit"</span>, <span class="st">"CIlwr"</span>, <span class="st">"CIupr"</span>)</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kc_ci_table)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      x     y    CIfit    CIlwr    CIupr
+1 58.02 276.0 319.6201 168.3750 470.8651
+2    NA    NA       NA       NA       NA
+3 52.84    NA 313.3109 162.0496 464.5722
+4 52.63 243.6 313.0551 161.7930 464.3172
+5 51.70    NA 311.9224 160.6567 463.1880
+6 49.88 300.0 309.7056 158.4324 460.9789</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>kc_plot <span class="ot">&lt;-</span> kc_plot <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table , <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIlwr), <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table , <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIfit), <span class="at">colour =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIupr), <span class="at">colour =</span> <span class="st">"red"</span>)</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>kc_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).
+Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).
+Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cmei24_OriginalHomeworkCode_04_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="produce-a-point-estimate-and-associated-90-percent-pi-for-the-longevity-of-a-species-whose-brain-weight-is-800-gm." class="level3">
+<h3 class="anchored" data-anchor-id="produce-a-point-estimate-and-associated-90-percent-pi-for-the-longevity-of-a-species-whose-brain-weight-is-800-gm.">Produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm.</h3>
+<p>To predict a single value we can use the <code>predict()</code> function again but with different arguments</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>prediction1 <span class="ot">&lt;-</span> <span class="fu">predict</span>(kc_model, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">brain_size =</span> <span class="dv">800</span>))</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a>prediction1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       1 
+1223.345 </code></pre>
+</div>
+</div>
+</section>
+<section id="do-you-trust-the-model-to-predict-observations-accurately-for-this-value-of-the-explanatory-variable-why-or-why-not" class="level3">
+<h3 class="anchored" data-anchor-id="do-you-trust-the-model-to-predict-observations-accurately-for-this-value-of-the-explanatory-variable-why-or-why-not">Do you trust the model to predict observations accurately for this value of the explanatory variable? Why or why not?</h3>
+<p>I do not trust this model since the line doesn’t fit very well with the data. This could be due to the decreased number of data points later (going to the right). Even the error shaded regions are seen to expand as we move to the right. Since we are using a weight value that is well out of range, this uncertainty increases, making me distrust this prediction.</p>
+<p><u><strong><em>#COMMENT FROM SHERRY:</em></strong></u> Agreed. I think this is great explanation!</p>
+</section>
+</section>
+<section id="we-will-now-repeat-this-for-the-log-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="we-will-now-repeat-this-for-the-log-linear-model"><strong>We will now repeat this for the log() linear model!</strong></h2>
+<p>Won’t comment much of the code here since it is very similar to what I did above!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>kc_model_log <span class="ot">&lt;-</span> <span class="fu">lm</span>(log_longevity <span class="sc">~</span> log_brain_size, <span class="at">data =</span> kc)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>kc_model_log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = log_longevity ~ log_brain_size, data = kc)
+
+Coefficients:
+   (Intercept)  log_brain_size  
+        4.8790          0.2341  </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">data =</span> kc, log_longevity <span class="sc">~</span> log_brain_size)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cmei24_OriginalHomeworkCode_04_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Formula:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>kc_log_intercept <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model_log)[<span class="dv">1</span>] ,<span class="dv">2</span>) <span class="co"># We take first value from coef and round it to 2 decimals</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>kc_log_slope <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model_log)[<span class="dv">2</span>] ,<span class="dv">2</span>)<span class="co"># We take second value (slope) from coef and round it to 2 decimals</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>kc_log_formula <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="st">"y = "</span>, kc_log_slope, <span class="st">"x + "</span>, kc_log_intercept)</span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a>kc_log_formula</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "y = 0.23x + 4.88"</code></pre>
+</div>
+</div>
+<p>Plotting!</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>kc_plot_log <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> kc, <span class="fu">aes</span>(<span class="at">x =</span> log_brain_size, <span class="at">y =</span> log_longevity)) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span> </span>
+<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span> </span>
+<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">x =</span> <span class="fl">5.5</span>, <span class="at">y =</span> <span class="fl">5.9</span>, <span class="at">label =</span> kc_log_formula, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span><span class="co"># Need to give label a coordinate</span></span>
+<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span>
+<span id="cb60-6"><a href="#cb60-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-7"><a href="#cb60-7" aria-hidden="true" tabindex="-1"></a>kc_plot_log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cmei24_OriginalHomeworkCode_04_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<section id="identify-and-interpret-the-point-estimate-of-the-slope-β1-1" class="level3">
+<h3 class="anchored" data-anchor-id="identify-and-interpret-the-point-estimate-of-the-slope-β1-1">Identify and interpret the point estimate of the slope (β1)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>kc_log_slope <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">coef</span>(kc_model_log)[<span class="dv">2</span>] ,<span class="dv">2</span>)<span class="co"># We take second value (slope) from coef and round it to 2 decimals</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>kc_log_slope</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>log_brain_size 
+          0.23 </code></pre>
+</div>
+</div>
+</section>
+<section id="percent-ci-for-the-slope-β1-parameter.-1" class="level3">
+<h3 class="anchored" data-anchor-id="percent-ci-for-the-slope-β1-parameter.-1">90 percent CI for the slope (β1) parameter.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>kc_log_ci <span class="ot">&lt;-</span> <span class="fu">confint</span>(kc_model_log, <span class="at">level =</span> <span class="fl">0.90</span>)[<span class="dv">2</span>,]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>kc_log_ci</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      5 %      95 % 
+0.2046396 0.2636595 </code></pre>
+</div>
+</div>
+</section>
+<section id="outcome-of-the-test-associated-with-the-hypotheses-h0-β1-0-ha-β1-0-1" class="level3">
+<h3 class="anchored" data-anchor-id="outcome-of-the-test-associated-with-the-hypotheses-h0-β1-0-ha-β1-0-1">Outcome of the test associated with the hypotheses H0: β1 = 0; HA: β1≠ 0</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>slopelog_p_value <span class="ot">&lt;-</span> <span class="fu">summary</span>(kc_model_log)<span class="sc">$</span>coefficients[<span class="dv">2</span>, <span class="dv">4</span>]</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>slopelog_p_value</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.165214e-25</code></pre>
+</div>
+</div>
+</section>
+<section id="using-your-model-add-lines-for-the-90-percent-confidence-and-prediction-interval-bands-on-the-plot-and-add-a-legend-to-differentiate-between-the-lines.-1" class="level3">
+<h3 class="anchored" data-anchor-id="using-your-model-add-lines-for-the-90-percent-confidence-and-prediction-interval-bands-on-the-plot-and-add-a-legend-to-differentiate-between-the-lines.-1">Using your model, add lines for the 90 percent confidence and prediction interval bands on the plot and add a legend to differentiate between the lines.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>prediction_interval_kc_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(kc_model_log, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">log_brain_size =</span> kc<span class="sc">$</span>log_brain_size), <span class="at">interval =</span> <span class="st">"prediction"</span>,<span class="at">level =</span> <span class="fl">0.90</span>)</span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>kc_ci_table_log <span class="ot">&lt;-</span> <span class="fu">cbind</span>(kc<span class="sc">$</span>log_brain_size, kc<span class="sc">$</span>log_longevity, prediction_interval_kc_log)</span>
+<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(kc_ci_table_log) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"x"</span>, <span class="st">"y"</span>, <span class="st">"CIfit"</span>, <span class="st">"CIlwr"</span>, <span class="st">"CIupr"</span>)</span>
+<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(kc_ci_table_log)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         x        y    CIfit    CIlwr    CIupr
+1 4.060788 5.620401 5.829783 5.416322 6.243243
+2       NA       NA       NA       NA       NA
+3 3.967268       NA 5.807885 5.394491 6.221279
+4 3.963286 5.495528 5.806953 5.393561 6.220344
+5 3.945458       NA 5.802778 5.389397 6.216159
+6 3.909620 5.703782 5.794387 5.381024 6.207749</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>kc_plot_log <span class="ot">&lt;-</span> kc_plot_log <span class="sc">+</span> <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table_log, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIlwr), <span class="at">colour =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table_log, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIfit), <span class="at">colour =</span> <span class="st">"purple"</span>) <span class="sc">+</span></span>
+<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">data =</span> kc_ci_table_log, <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> CIupr), <span class="at">colour =</span> <span class="st">"red"</span>)</span>
+<span id="cb71-4"><a href="#cb71-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-5"><a href="#cb71-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb71-6"><a href="#cb71-6" aria-hidden="true" tabindex="-1"></a>kc_plot_log</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing non-finite outside the scale range
+(`stat_smooth()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 85 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).
+Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).
+Removed 42 rows containing missing values or values outside the scale range
+(`geom_line()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="cmei24_OriginalHomeworkCode_04_files/figure-html/unnamed-chunk-32-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="produce-a-point-estimate-and-associated-90-percent-pi-for-the-longevity-of-a-species-whose-brain-weight-is-800-gm.-1" class="level3">
+<h3 class="anchored" data-anchor-id="produce-a-point-estimate-and-associated-90-percent-pi-for-the-longevity-of-a-species-whose-brain-weight-is-800-gm.-1">Produce a point estimate and associated 90 percent PI for the longevity of a species whose brain weight is 800 gm.</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>prediction2 <span class="ot">&lt;-</span> <span class="fu">predict</span>(kc_model_log, <span class="at">newdata =</span> <span class="fu">data.frame</span>(<span class="at">log_brain_size =</span> <span class="fu">log</span>(<span class="dv">800</span>)))</span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>prediction2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      1 
+6.44415 </code></pre>
+</div>
+</div>
+</section>
+<section id="looking-at-your-two-models-which-do-you-think-is-better-why" class="level3">
+<h3 class="anchored" data-anchor-id="looking-at-your-two-models-which-do-you-think-is-better-why">Looking at your two models, which do you think is better? Why?</h3>
+<p>Visually, the log model is much better! Data points are more evenly spread throughout the scatterplot, making it less uncertain for predicted values that are out of the brain_size range to be accurately predicted.</p>
+<p><u><strong><em>#COMMENT FROM SHERRY:</em></strong></u> Hi Christian! Your hw 4 looks amazing. It was truly inspiring and I am very honored to have been in the same peer group with you for a 2nd time. I think I made 2 suggestions and the rest are comments about what I think you did great of. Thanks!</p>
+</section>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
