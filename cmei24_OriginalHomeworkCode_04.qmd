@@ -398,3 +398,5 @@ prediction2
 ### Looking at your two models, which do you think is better? Why?
 
 Visually, the log model is much better! Data points are more evenly spread throughout the scatterplot, making it less uncertain for predicted values that are out of the brain_size range to be accurately predicted.
+
+[***#COMMENT FROM SHERRY:***]{.underline} Hi Christian! Your hw 4 looks amazing. It was truly inspiring and I am very honored to have been in the same peer group with you for a 2nd time. I think I made 2 suggestions and the rest are comments about what I think you did great of. Thanks!
