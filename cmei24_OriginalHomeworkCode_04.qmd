@@ -49,6 +49,7 @@ Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0,
     SE <- sqrt((p0 * (1 - p0)) / n1)  # Standard Error
     Z <- (p1 - p0) / SE  # Z-score based on SE
 
+#COMMENT FROM SHERRY: The one sample test looks great! I like how you grouped terms such as standard error. I just wrote out the whole thing. But its cool how there are different ways of approaching the problem!
     
     # Compute p-value based on alternative hypothesis
     if (alternative == "less") {
