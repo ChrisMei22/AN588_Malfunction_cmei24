@@ -152,6 +152,8 @@ Z.prop.test(p1 = v1_prop, n1 = length(v1), p2 = v2_prop, n2 = length(v2), altern
 
 It appears that my function is correctly testing proportions in a Z test!
 
+[***#COMMENT FROM SHERRY:***]{.underline} AWESOME JOB! I ran through both of your examples and they work flawlessly! I like the diversity in your examples that proves how your function fully covers all aspects.
+
 ## The dataset from Kamilar and Cooper has in it a large number of variables related to life history and body size. For this exercise, the end aim is to fit a simple linear regression model to predict longevity (`MaxLongevity_m`) measured in months from species’ brain size (`Brain_Size_Species_Mean`) measured in grams. Do the following for both `longevity~brain size` and `log(longevity)~log(brain size)`:
 
 Load the necessary libraries
