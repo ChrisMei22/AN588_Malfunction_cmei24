@@ -92,6 +92,20 @@ Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0,
 
 Let's put this to the test! We can use the proportion data provided in class and see how well this function's output matches with the one provided in [Module 10](https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html).
 
+[***#COMMENT FROM SHERRY:***]{.underline} I also gave examples to check my function but you went above and beyond!!! These examples are so lively and fun! I just wrote mine out like this: feel free to delete my examples \
+
+```{r}
+# example set 1, one sample test
+#Z.prop.test.function(p1 = 0.6, n1 = 50, p0 = 0.8)
+
+# example set 2, two sample test
+#Z.prop.test.function(p1 = 0.3, n1 = 50, p2 = 0.7, n2 = 35, p0 = 0.5)
+
+# example set 1, one sample test
+# this example shows the warning sign on how the sample violates the (np > 5 and n(1-p) > 5) rule
+#Z.prop.test.function(p1 = 0.1, n1 = 10, p0 = 0.8)
+```
+
 A neotropical ornithologist working in the western Amazon deploys 30 mist nets in a 100 hectare (ha) grid. She monitors the nets on one morning and records whether or not she captures any birds in the net (i.e., a “success” or “failure” for every net during a netting session). The following vector summarizes her netting results:
 
 ```{r}
