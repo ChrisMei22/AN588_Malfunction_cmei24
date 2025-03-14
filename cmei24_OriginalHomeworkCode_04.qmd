@@ -36,6 +36,8 @@ Z.prop.test <- function(p1, n1, p2 = NULL, n2 = NULL, p0,
     }
   }
 
+#COMMENT FROM SHERRY: All the way up to this point, I had the same function. I think you did a great job with the warning message. It tells the user a clear message of the rules that are violated!
+  
   alpha <- 1 - conf.level  # Confidence level adjustment
   crit <- qnorm(1 - alpha / 2)  # Z critical threshold for CI
 
