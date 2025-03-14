@@ -211,6 +211,8 @@ Now we're ready to create the linear models using `lm()`
 ```{r}
 kc_model <- lm(longevity~ brain_size, data = kc)
 kc_model
+
+#COMMENT FROM SHERRY: A function here I found useful is also summary(kc_model) it shows more information about the linear model that the users might be interested in
 ```
 
 To create the formula, we can isolate the coefficients for y-intercept and slope
