@@ -7,6 +7,8 @@ editor: visual
 
 Modules of Reference: [Module 10](https://fuzzyatelin.github.io/bioanth-stats/module-10/module-10.html), Module 12
 
+[***COMMENT FROM SHERRY:***]{.underline} I also started inserting the link of modules into hw! I think this is a great way to stay organized! Great start.
+
 ## Write a simple R function, `Z.prop.test()`, that can perform one- or two-sample Z-tests for proportion data, using the following guidelines:
 
 -   Your function should take the following arguments: **p1** and **n1** (no default) representing the estimated proportion and sample size (i.e., based on your sample data); **p2** and **n2** (both defaulting to NULL) that contain a second sample’s proportion and sample size data in the event of a two-sample test; **p0** (no default) as the expected value for the population proportion; and **alternative** (default “two.sided”) and **conf.level** (default 0.95), to be used in the same way as in the function `t.test()`.
